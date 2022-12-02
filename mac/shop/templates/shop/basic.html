@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<style class="css">
+    body{
+        background-color: white;
+    }
+    :root {
+  --button-background: dodgerblue;
+  --button-color: white;
+  
+  --dropdown-highlight: dodgerblue;
+  --dropdown-width: 160px;
+  --dropdown-background: white;
+  --dropdown-color: black;
+}
+a.button {
+  /* Frame */
+  display: inline-block;
+  padding: 20px 28px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  
+  /* Style */
+  border: none;
+  cursor: pointer;
+}
+
+a.button:active {
+  filter: brightness(75%);
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  padding: 0;
+  margin-right: 1em;
+  
+  border: none;
+}
+
+.dropdown summary {
+  list-style: none;
+  list-style-type: none;
+}
+
+.dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.dropdown summary:focus {
+  outline: none;
+}
+
+.dropdown summary:focus a.button {
+  border: 2px solid white;
+}
+
+.dropdown summary:focus {
+  outline: none;
+}
+
+.dropdown ul {
+  position: absolute;
+  margin: 20px 0 0 0;
+  padding: 20px 0;
+  width: var(--dropdown-width);
+  left: 50%;
+  margin-left: calc((var(--dropdown-width) / 2)  * -1);
+  box-sizing: border-box;
+  z-index: 2;
+  
+  background: var(--dropdown-background);
+  border-radius: 6px;
+  list-style: none;
+}
+
+.dropdown ul li {
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li a:link, .dropdown ul li a:visited {
+  display: inline-block;
+  padding: 10px 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+  
+  color: var(--dropdown-color);
+  text-decoration: none;
+}
+
+.dropdown ul li a:hover {
+  background-color: var(--dropdown-highlight);
+  color: var(--dropdown-background);
+}
+
+/* Dropdown triangle */
+.dropdown ul::before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent var(--dropdown-background) transparent;
+}
+
+
+/* Close the dropdown with outside clicks */
+.dropdown > summary::before {
+  display: none;
+}
+
+.dropdown[open] > summary::before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+}
+body{
+    font-family: "Cairo", sans-serif;
+    min-height: 100vh;
+}
+main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main::before{
+   content: "";
+   position: fixed;
+   width: 300%;
+   height: 100%;
+   /*placingthewavesinthemiddle*/left: 50%;
+   top: 50%;
+   background-color:cornflowerblue;
+   transform: translateX(-50%) skew(0,-10deg);
+   -webkit-transform: translateX(-50%) skew(0,-10deg);
+   -moz-transform: translateX(-50%) skew(0,-10deg);
+   -ms-transform: translateX(-50%) skew(0,-10deg);
+   -o-transform: translateX(-50%) skew(0,-10deg);
+   border-radius: 50%;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+   animation: wave  2s ease-in-out infinite alternate ;
+   -webkit-animation: wave  10s ease-in-out infinite alternate ;
+   /* to make it always behind elements */
+   z-index: -1;
+}
+@keyframes wave {
+    from{
+        transform: translateX(-50%) skew(0,-10deg);
+        -webkit-transform: translateX(-50%) skew(0,-10deg);
+        -moz-transform: translateX(-50%) skew(0,-10deg);
+        -ms-transform: translateX(-50%) skew(0,-10deg);
+        -o-transform: translateX(-50%) skew(0,-10deg);
+}
+    to{
+        transform: translateX(-30%) skew(10deg,0);
+        -webkit-transform: translateX(-30%) skew(10deg,0);
+        -moz-transform: translateX(-30%) skew(10deg,0);
+        -ms-transform: translateX(-30%) skew(10deg,0);
+        -o-transform: translateX(-30%) skew(10deg,0);
+}
+}
+/* Styling the Card */
+main .card{
+    background-color: #eee;
+    width: 300px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+main .card .image{
+    height: 300px;
+    background-image:   url('https://pyxis.nymag.com/v1/imgs/020/c73/400de647d6dc1cd2cd941f1f3d62083018-11-gavin.rsquare.w700.jpg');
+    background-size: cover;
+
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.card .info > *{
+    margin: 15px 0;
+}
+.card .info p{
+    color: rgb(154, 153, 153);
+}
+
+{% block css %} {% endblock %}
+
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/" style="font-family: mo; ">ZaidBaba.com</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="/shop">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/shop/about/">About us</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/shop/contact/">Contact us</a>
+
+      </ul>
+        {% if request.user.is_authenticated %}
+        <details class="dropdown">
+    <summary role="button">
+      <a class="button btn-outline-success"><strong style="color: white;">{{request.user.username|capfirst}}</strong></a>
+    </summary>
+    <ul>
+      <li style="background-color: rosybrown;"><a href="/shop/profile"><strong style="color:white;">Profile</strong></a></li>
+      <li style="background-color: rosybrown;"><a href="/shop/order"><strong style="color: white;">Orders</strong></a></li>
+      <li style="background-color: rosybrown;"><a href="{% url 'logout' %}"><strong style="color: white;">Logout</strong></a></li>
+  </ul>
+</details>
+
+     <a href=/shop/cart/> <button type="button" class="btn btn-warning mx-2"  data-container="body" data-toggle="popover"
+             data-placement="bottom" data-html="true" data-content="Bottom popover">
+         Cart
+     </button></a>
+        </li>
+        {% else %}
+<ul class="navbar-nav" >
+
+        <li class="nav-item">
+          <a class="nav-link" href=/shop/registration/>Register</a>
+        </li>
+
+<li class="nav-item mx-2">
+          <a class="nav-link" href=/shop/accounts/login/>Login</a>
+        </li>
+</ul>
+        {% endif %}
+
+    </div>
+  </div>
+</nav>
+
+{% block body %} {% endblock %} 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

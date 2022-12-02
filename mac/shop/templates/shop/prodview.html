@@ -1,0 +1,42 @@
+{% extends 'shop/basic.html' %}
+{% block title %}{{product.product_name}}{% endblock %}
+{% block body %}
+<style>
+    .cart{
+        display: block;
+  width: 100%;
+    }
+    .buy{
+        display: block;
+  width: 100%;
+    }
+</style>
+<main>
+<div class="container my-4 mb-5">
+
+    <div class="row mb-5">
+    <div class="col-md-4">
+    <div class="row mb-5">
+        <img src="/media/{{product.img}}" width="230" height="300">
+    </div>
+
+    </div>
+
+    <div class="col-md-8">
+        <h5>{{product.product_name}}</h5>
+        <p><b>Rs {{product.price}}</b></p>
+        <p>{{product.desc}}</p>
+         {% if request.user.is_authenticated %}
+            <form action="/shop/cart" class="block">
+                  <input type="hidden" name="prod_id" value="{{product.id}}" id="prod_id">
+             <button id="pr{{i.id}}" class="btn btn-primary  btn-success  cart">Add to Cart</button>
+             </form>
+            {% else %}
+            <a href="/shop/registration"> <button class="btn btn-primary  btn-warning shadow my-2 cart">Login</button></a>
+            {% endif %}
+    </div>
+    </div>
+</div>
+
+</main>
+{% endblock %}

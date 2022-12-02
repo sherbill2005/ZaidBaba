@@ -1,0 +1,77 @@
+{% extends 'shop/basic.html' %}
+{% block title %}checkout{% endblock %}
+{% block body %}
+<body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+          <svg  xmlns="" width="72" height="72" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-bag-check-fill "
+                viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+          </svg>
+        <h2>Checkout</h2>
+      </div>
+
+      <div class="row" style="justify-content: center" >
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{l}}</span>
+          </h4>
+          {% for items in cart_sum %}
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">{{items.product.product_name}}</h6>
+                <small>Quantity: {{items.quantity}}</small>
+              </div>
+              <span class="text-muted">Rs.{{items.product.price}}</span>
+            </li>
+            {% endfor %}
+
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (PKR)</span>
+              <strong>Rs.{{total_amount}}</strong>
+            </li>
+          </ul>
+          </div>
+        </div>
+      <h4>Select Shipping Address</h4>
+    <hr>
+    <form action="/shop/payment_done">
+      {% for ad in add %}
+      <div class="card">
+        <div class="card-body">
+        <h5>{{ad.name}}</h5>
+        <p>locality: {{ad.locality}}</p>
+        <p>city: {{ad.city}}</p>
+        <p>state: {{ad.state}}</p>
+        <p>zip: {{ad.zipcode}}</p>
+        </div>
+      </div>
+        <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" type="radio" name='custid' id="custadd{{forloop.counter}}"
+                 value="{{ad.id}}">
+          <label class="form-check-label fw-bold" >
+            Address: {{forloop.counter}} </label>
+        </div>
+        {% endfor %}
+            <hr class="mb-4">
+            <button class="btn btn-success btn-lg btn-block" type="submit">Place Order</button>
+
+    </form>
+        </div>
+
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2022 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="/shop/about/">About</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+  </body>
+<main></main>
+
+{% endblock %}
